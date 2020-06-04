@@ -1,0 +1,30 @@
+create database MamoonDB;
+
+use MamoonDB;
+
+
+create table Moviedata ( MovieID int(10) NOT NULL,MovieName Varchar(20) NOT NULL,AgeRating varchar(20) NOT NULL,DirectorName char(20) NOT NULL, ScreenTime Varchar(20) NOT NULL ,PRIMARY KEY(MovieId));
+
+create table Screendata ( MovieName varchar(20) NOT NULL, SCreenNumber int(10) NOT NULL, ScreenId int (10) NOT NULL,Seats int(20) NOT NULL,FOREIGN KEY(MovieName) REFERENCES Moviedata(MovieName),primary key(SCreenId));  
+
+Create Table Control (MovieName varchar(20) NOT NULL,FOREIGN KEY(MovieName) REFERENCES Moviedata(MovieName),SCreenId int(10) NOT NULL,FOREIGN KEY(SCreenId) REFERENCES Screendata(SCreenId),Time varchar(20) NOT NULL,AvailableTickets int(20) NOT NULL);
+
+create table Timing ( Time varchar(20) NOT NULL, SCreenId int(10) NOT NULL, FOREIGN KEY(SCreenId) REFERENCES Screendata(SCreenId));
+
+
+describe Screendata;
+
+describe Control;
+
+describe Moviedata;
+
+
+
+insert into Moviedata values(1,'Deadpool','R','Tim Miller','1h49m'),(2,'Avengers','PG-13','Russo Brothers','2h40m'),(3,'Glass','PG-13','M. Night Shyamalan','2h9m'),(4,'Spider-Man','PG-13','Peter Ramsey','1h9m');
+
+insert into Screendata values('Deadpool',1, 1,100),('Avengers',2, 2,100),('Glass',1, 3,100),('Spider-Man',2, 4,100),('Deadpool',3, 5,100),('Glass',3, 6,100);
+
+insert into Timing values('8:00pm', 1), ('12:00pm', 2), ('8:00pm',3), ('12:00pm', 4), ('6:00pm',5), ('6:00pm', 6);
+
+insert into Control values('Deadpool',1,'8:00pm',100),('Avengers',2,'8:00pm',100),('Glass',3,'12:00pm',100),('Spider-Man',4,'12:00pm',100),('Deadpool',5,'6:00pm',100),('Glass',6,'6:00pm',100);
+
